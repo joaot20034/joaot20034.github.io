@@ -90,64 +90,8 @@
                 </div>
             </div>
 
+            <!-- Notice how empty this is now! JavaScript will fill it in. -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="project-grid">
-                
-                <!-- Project Card 1 (Script) -->
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:-translate-y-1" data-category="script">
-                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center mb-4">
-                        <i class="ph ph-folder-notch-open text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Auto File Organizer</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">A Bash script that automatically sorts messy download folders into categorized directories based on file extensions.</p>
-                    <div class="flex gap-2 mb-4">
-                        <span class="text-xs font-semibold px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300">Bash</span>
-                        <span class="text-xs font-semibold px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300">Linux</span>
-                    </div>
-                    <a href="https://github.com/joaot20034/auto-file-organizer" target="_blank" class="text-slate-600 dark:text-slate-400 font-semibold text-sm hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors">
-                            <i class="ph ph-github-logo text-lg"></i> Code
-                        </a>
-                </div>
-
-                <!-- Project Card 2 (Web) -->
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:-translate-y-1" data-category="web">
-                    <div class="w-12 h-12 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-xl flex items-center justify-center mb-4">
-                        <i class="ph ph-cloud-sun text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Weather Fetcher</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">A web application that connects to the OpenWeather API to fetch and display real-time forecasting data for any city.</p>
-                    <div class="flex gap-2 mb-6">
-                        <span class="text-xs font-semibold px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300">HTML/CSS</span>
-                        <span class="text-xs font-semibold px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300">JavaScript</span>
-                        <span class="text-xs font-semibold px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300">APIs</span>
-                    </div>
-                    
-                    <!-- Added both Live Demo and Source Code links here -->
-                    <div class="flex gap-4 items-center mt-auto">
-                        <a href="https://joaot20034.github.io/weather-app/" target="_blank" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg font-semibold transition-colors flex items-center gap-1 shadow-sm">
-                            <i class="ph ph-play-circle text-lg"></i> Live Demo
-                        </a>
-                        <a href="https://github.com/joaot20034/weather-app" target="_blank" class="text-slate-600 dark:text-slate-400 font-semibold text-sm hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors">
-                            <i class="ph ph-github-logo text-lg"></i> Code
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project Card 3 (Script) -->
-                <div class="project-card bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:-translate-y-1" data-category="script">
-                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center mb-4">
-                        <i class="ph ph-terminal-window text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">CLI Task Manager</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">A command-line tool written in Python that allows users to create, read, update, and delete daily tasks stored in a JSON file.</p>
-                    <div class="flex gap-2 mb-4">
-                        <span class="text-xs font-semibold px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300">Python</span>
-                        <span class="text-xs font-semibold px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300">JSON</span>
-                    </div>
-                    <a href="https://github.com/joaot20034/CLI-Task-Manager" target="_blank" class="text-slate-600 dark:text-slate-400 font-semibold text-sm hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors">
-                            <i class="ph ph-github-logo text-lg"></i> Code
-                        </a>
-                </div>
-
             </div>
         </section>
 
@@ -164,9 +108,58 @@
         <p>Built by João Trindade &copy; 2026. Hosted on GitHub Pages.</p>
     </footer>
 
+    <!-- Link your new data file here -->
+    <script src="data/projects.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
+            // --- Render Projects Dynamically ---
+            const projectGrid = document.getElementById('project-grid');
+            
+            portfolioProjects.forEach(project => {
+                // Create the badges (spans) for the tech stack
+                const techBadges = project.tech.map(tech => 
+                    `<span class="text-xs font-semibold px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded text-slate-600 dark:text-slate-300">${tech}</span>`
+                ).join('');
+
+                // Create the Live Demo button if it exists in the data
+                const demoButton = project.demoLink 
+                    ? `<a href="${project.demoLink}" target="_blank" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg font-semibold transition-colors flex items-center gap-1 shadow-sm">
+                        <i class="ph ph-play-circle text-lg"></i> Live Demo
+                       </a>`
+                    : '';
+
+                // Create the Code button if it exists
+                const codeButton = project.repoLink
+                    ? `<a href="${project.repoLink}" target="_blank" class="text-slate-600 dark:text-slate-400 font-semibold text-sm hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-1 transition-colors">
+                        <i class="ph ph-github-logo text-lg"></i> Code
+                       </a>`
+                    : '';
+
+                // Build the entire card HTML
+                const cardHTML = `
+                    <div class="project-card bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:-translate-y-1 reveal" data-category="${project.category}">
+                        <div class="w-12 h-12 ${project.iconBg} ${project.iconColor} rounded-xl flex items-center justify-center mb-4">
+                            <i class="ph ${project.icon} text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">${project.title}</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">${project.description}</p>
+                        <div class="flex gap-2 mb-6">
+                            ${techBadges}
+                        </div>
+                        <div class="flex gap-4 items-center mt-auto pt-4">
+                            ${demoButton}
+                            ${codeButton}
+                        </div>
+                    </div>
+                `;
+
+                // Add the card to the grid
+                projectGrid.innerHTML += cardHTML;
+            });
+
+
             // --- Dark Mode Logic ---
             const themeToggleBtn = document.getElementById('theme-toggle');
             const htmlElement = document.documentElement;
